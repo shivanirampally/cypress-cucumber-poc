@@ -6,10 +6,10 @@ describe('SauceDemo End-to-End Purchase Flow', function () {
     // Reusable login
     cy.login();
 
-    // Confirm we are inside inventory page
-    cy.get('.title', { timeout: 10000 })
-      .should('be.visible')
-      .and('have.text', 'Products');
+    // Confirm inventory page
+  cy.get('.title')
+  .should('be.visible')
+  .and('have.text', 'Products');
 
     // Load test data once
     cy.fixture('checkoutData').then(function (data) {
