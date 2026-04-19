@@ -1,25 +1,33 @@
-// ***********************************************
-// This example commands.js shows you how to
-// create various custom commands and overwrite
-// existing commands.
-//
-// For more comprehensive examples of custom
-// commands please read more here:
-// https://on.cypress.io/custom-commands
-// ***********************************************
-//
-//
-// -- This is a parent command --
-// Cypress.Commands.add('login', (email, password) => { ... })
-//
-//
-// -- This is a child command --
-// Cypress.Commands.add('drag', { prevSubject: 'element'}, (subject, options) => { ... })
-//
-//
-// -- This is a dual command --
-// Cypress.Commands.add('dismiss', { prevSubject: 'optional'}, (subject, options) => { ... })
-//
-//
-// -- This will overwrite an existing command --
-// Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+Cypress.Commands.add("loginMicrosoft", () => {
+
+  cy.session("chorus-token-session", () => {
+
+    // ✅ FIX: use full URL to avoid baseUrl prefix
+    cy.visit("about:blank", { failOnStatusCode: false });
+
+    cy.window().then((win) => {
+
+      const sessionStorage = win.sessionStorage;
+
+      sessionStorage.setItem("access_token", Cypress.env("access_token"));
+      sessionStorage.setItem("id_token", Cypress.env("id_token"));
+      sessionStorage.setItem("session_state", Cypress.env("session_state"));
+
+      if (Cypress.env("id_token_claims_obj")) {
+        sessionStorage.setItem(
+          "id_token_claims_obj",
+          Cypress.env("id_token_claims_obj")
+        );
+      }
+
+      sessionStorage.setItem("expires_at", Date.now() + 3600 * 1000);
+      sessionStorage.setItem("access_token_stored_at", Date.now());
+      sessionStorage.setItem("id_token_stored_at", Date.now());
+    });
+
+    // ✅ Now open actual app
+    cy.visit("/", { failOnStatusCode: false });
+
+  });
+
+});
