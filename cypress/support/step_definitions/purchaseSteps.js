@@ -12,7 +12,7 @@ Given('user is logged into SauceDemo', function () {
     .should('be.visible')
     .and('have.text', 'Products');
 
-  // ✅ Store fixture as alias (fix for your issue)
+  // Store fixture as alias
   cy.fixture('checkoutData').as('checkoutData');
 });
 
@@ -39,7 +39,7 @@ When('user proceeds to checkout', () => {
 
 When('user enters checkout details', function () {
 
-  // ✅ Use alias safely (ensures proper sync)
+  //Use alias ensures proper sync
   cy.get('@checkoutData').then((data) => {
 
     cy.get('#first-name').should('be.visible').type(data.firstName);
@@ -49,7 +49,7 @@ When('user enters checkout details', function () {
 
   cy.get('#continue').click();
 
-  // ✅ Critical assertion (ensures next steps run)
+  //ensures next steps run
   cy.url().should('include', '/checkout-step-two.html');
 });
 

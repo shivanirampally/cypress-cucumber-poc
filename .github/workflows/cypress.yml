@@ -2,6 +2,9 @@ name: Cypress CI
 
 on:
   push:
+    branches: [ main, feature/cucumber-poc ]
+
+  pull_request:
     branches: [ main ]
 
 jobs:
@@ -9,23 +12,36 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      # Checkout code
       - name: Checkout Repository
         uses: actions/checkout@v4
 
+      # Setup Node
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
 
+      # Install dependencies (better than npm install)
       - name: Install Dependencies
-        run: npm install
+        run: npm ci
 
-      - name: Run Cypress Tests
-        run: npx cypress run
+      # Run ONLY Cucumber tests in Chrome headless
+      - name: Run Cypress Cucumber Tests
+        run: npx cypress run --browser chrome --spec "cypress/e2e/**/*.feature"
 
+      # Upload screenshots on failure
       - name: Upload Cypress Screenshots
-        if: failure()   # uploads only if tests fail
+        if: failure()
         uses: actions/upload-artifact@v4
         with:
           name: screenshots
           path: cypress/screenshots
+
+      # Upload videos (always helpful)
+      - name: Upload Cypress Videos
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: videos
+          path: cypress/videos
