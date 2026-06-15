@@ -3,21 +3,31 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
+
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shivanirampally/cypress-nopcommerce-poc.git"
   },
+
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "commonjs",
+
   "bugs": {
     "url": "https://github.com/shivanirampally/cypress-nopcommerce-poc/issues"
   },
+
   "homepage": "https://github.com/shivanirampally/cypress-nopcommerce-poc#readme",
+
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/stepDefinitions/**/*.{js,ts}"
+  },
+
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
