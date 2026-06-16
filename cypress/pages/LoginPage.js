@@ -1,12 +1,15 @@
 class LoginPage {
 
-    navigateToLoginPage() {
+  navigateToLoginPage() {
+    cy.visit("/", {
+      failOnStatusCode: false
+    });
+  }
 
-        cy.visit('/', {
-            failOnStatusCode: false
-        });
-
-    }
+  verifyHomePage() {
+    cy.contains("Log in", { timeout: 60000 })
+      .should("be.visible");
+  }
 
 }
 

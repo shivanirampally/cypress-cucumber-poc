@@ -5,7 +5,11 @@
   "main": "index.js",
 
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "open": "cypress open",
+    "run": "cypress run",
+    "run:chrome": "cypress run --browser chrome",
+    "run:headed": "cypress run --browser chrome --headed"
   },
 
   "repository": {
@@ -38,4 +42,5 @@
     "mochawesome-merge": "^5.1.1",
     "mochawesome-report-generator": "^6.3.2"
   }
-}
+
+} 

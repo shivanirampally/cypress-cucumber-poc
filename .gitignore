@@ -1,4 +1,13 @@
 node_modules/
+
+# Cypress Artifacts
 cypress/screenshots/
 cypress/videos/
+cypress/downloads/
+
+# Reports
+cypress/reports/
 mochawesome-report/
+mochawesome.html
+mochawesome.json
+reports/

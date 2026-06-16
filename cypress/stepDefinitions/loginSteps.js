@@ -1,16 +1,10 @@
-import { Given } from "@badeball/cypress-cucumber-preprocessor";
+import { Given, Then } from "@badeball/cypress-cucumber-preprocessor";
 import LoginPage from "../pages/LoginPage";
 
 Given("User launches nopCommerce application", () => {
-
-    LoginPage.navigateToLoginPage();
-
+  LoginPage.navigateToLoginPage();
 });
 
-Given("User completes Cloudflare verification manually", () => {
-
-    cy.log("Complete Cloudflare verification manually");
-
-    cy.pause();
-
+Then("Home page should be displayed", () => {
+  LoginPage.verifyHomePage();
 });
