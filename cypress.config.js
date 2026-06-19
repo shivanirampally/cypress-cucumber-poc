@@ -1,0 +1,33 @@
+const { defineConfig } = require("cypress");
+const createBundler = require("@bahmutov/cypress-esbuild-preprocessor");
+const {addCucumberPreprocessorPlugin,} = require("@badeball/cypress-cucumber-preprocessor");
+const createEsbuildPlugin =   require("@badeball/cypress-cucumber-preprocessor/esbuild");
+
+async function setupNodeEvents(on, config) {
+  await addCucumberPreprocessorPlugin(on, config);
+
+  on(
+    "file:preprocessor",
+    createBundler({
+      plugins: [createEsbuildPlugin.default(config)],
+    })
+  );
+
+  return config;
+}
+
+module.exports = defineConfig({
+  screenshotOnRunFailure: true,
+  e2e: {
+    baseUrl: "https://qaplayground.com",
+    specPattern: "cypress/e2e/features/*.feature",
+    setupNodeEvents,
+  },
+    reporter: "mochawesome",
+  reporterOptions: {
+    reportDir: "mochawesome-report",
+    overwrite: false,
+    html: true,
+    json: true
+  },
+});

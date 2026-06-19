@@ -1,0 +1,90 @@
+{
+  "stats": {
+    "suites": 0,
+    "tests": 1,
+    "passes": 0,
+    "pending": 0,
+    "failures": 1,
+    "start": "2026-06-19T07:28:59.341Z",
+    "end": "2026-06-19T07:28:59.648Z",
+    "duration": 307,
+    "testsRegistered": 1,
+    "passPercent": 0,
+    "pendingPercent": 0,
+    "other": 0,
+    "hasOther": false,
+    "skipped": 0,
+    "hasSkipped": false
+  },
+  "results": [
+    {
+      "uuid": "c58d136b-39e2-47e5-b4ab-52479842e3bf",
+      "title": "",
+      "fullFile": "cypress\\e2e\\features\\secureBankE2E.feature",
+      "file": "cypress\\e2e\\features\\secureBankE2E.feature",
+      "beforeHooks": [],
+      "afterHooks": [],
+      "tests": [
+        {
+          "title": "An uncaught error was detected outside of a test",
+          "fullTitle": "An uncaught error was detected outside of a test",
+          "timedOut": null,
+          "duration": 299,
+          "state": "failed",
+          "speed": null,
+          "pass": false,
+          "fail": true,
+          "pending": false,
+          "context": null,
+          "code": "throw err;",
+          "err": {
+            "message": "Error: The following error originated from your test code, not from Cypress.\n\n  > Expected to find a global registry (this usually means you are trying to define steps or hooks in support/e2e.js, which is not supported) (this might be a bug, please report at https://github.com/badeball/cypress-cucumber-preprocessor)\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nCypress could not associate this error to any specific test.\n\nWe dynamically generated a new test to display this failure.",
+            "estack": "Error: The following error originated from your test code, not from Cypress.\n\n  > Expected to find a global registry (this usually means you are trying to define steps or hooks in support/e2e.js, which is not supported) (this might be a bug, please report at https://github.com/badeball/cypress-cucumber-preprocessor)\n\nWhen Cypress detects uncaught errors originating from your test code it will automatically fail the current test.\n\nCypress could not associate this error to any specific test.\n\nWe dynamically generated a new test to display this failure.\n    at createError (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:12799:16)\n    at fail (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:12856:39)\n    at assert (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:12862:9)\n    at ensure (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:12865:9)\n    at getRegistry (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:15450:40)\n    at defineBefore (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:16673:38)\n    at cypress/support/hooks.js (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:16820:55)\n    at __require (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:18:54)\n    at cypress/support/e2e.js (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:16833:34)\n    at __require (https://qaplayground.com/__cypress/tests?p=cypress\\support\\e2e.js:18:54)",
+            "diff": null
+          },
+          "uuid": "b2b9b277-fd2c-4443-9396-c396983bfcc1",
+          "parentUUID": "c58d136b-39e2-47e5-b4ab-52479842e3bf",
+          "isHook": false,
+          "skipped": false
+        }
+      ],
+      "suites": [],
+      "passes": [],
+      "failures": [
+        "b2b9b277-fd2c-4443-9396-c396983bfcc1"
+      ],
+      "pending": [],
+      "skipped": [],
+      "duration": 299,
+      "root": true,
+      "rootEmpty": false,
+      "_timeout": 2000
+    }
+  ],
+  "meta": {
+    "mocha": {
+      "version": "7.2.0"
+    },
+    "mochawesome": {
+      "options": {
+        "quiet": false,
+        "reportFilename": "mochawesome",
+        "saveHtml": true,
+        "saveJson": true,
+        "consoleReporter": "spec",
+        "useInlineDiffs": false,
+        "code": true
+      },
+      "version": "7.1.4"
+    },
+    "marge": {
+      "options": {
+        "reportDir": "mochawesome-report",
+        "overwrite": false,
+        "html": true,
+        "json": true
+      },
+      "version": "6.3.2"
+    }
+  }
+}
