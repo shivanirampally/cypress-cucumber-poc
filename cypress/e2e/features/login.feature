@@ -1,4 +1,5 @@
-Feature: Role Based Access
+@smoke
+Feature: Role Based Access Validation
 
 Scenario Outline: Verify Role Access
 

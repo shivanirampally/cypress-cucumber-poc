@@ -1,3 +1,4 @@
+@e2e
 Feature: Secure Bank End To End Flow
 
 Scenario: Admin and Viewer End To End Validation
@@ -12,6 +13,14 @@ Scenario: Admin and Viewer End To End Validation
 
     And New Transaction button should be visible
 
+    When User opens New Transaction popup
+
+    Then Transaction popup should be displayed
+
+    When User clicks Cancel button
+
+    Then Transaction popup should be closed
+
     When User logs out
 
     And User logs in as "viewer"
@@ -19,3 +28,13 @@ Scenario: Admin and Viewer End To End Validation
     Then User role "viewer" should be displayed
 
     And New Transaction button should be visible
+
+    When User opens New Transaction popup
+
+    Then Transaction popup should be displayed
+
+    When User clicks Cancel button
+
+    Then Transaction popup should be closed
+
+    When User logs out

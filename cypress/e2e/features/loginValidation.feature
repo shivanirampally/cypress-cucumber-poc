@@ -1,3 +1,4 @@
+@regression
 Feature: Login Validation
 
 Scenario Outline: Verify Login Validation

@@ -1,3 +1,4 @@
+@smoke
 Feature: Bank Demo Application
 
   Scenario: Navigate to Secure Bank Demo Page

@@ -1,16 +1,23 @@
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
+import bankPage from "../../pages/bankPage";
 import transactionPage from "../../pages/transactionPage";
 
+// Verify New Transaction button is displayed
 Then("New Transaction button should be visible", () => {
 
     transactionPage.newTransactionButton()
         .should("be.visible");
 });
 
+// Open New Transaction popup
 When("User opens New Transaction popup", () => {
 
     transactionPage.newTransactionButton()
         .click();
+});
+
+// Verify transaction popup displayed
+Then("Transaction popup should be displayed", () => {
 
     cy.get('[role="dialog"]', {
         timeout: 10000
@@ -20,56 +27,55 @@ When("User opens New Transaction popup", () => {
         .should("exist");
 });
 
-When("User creates a transaction", () => {
+// Fill transaction details using fixture data
+When("User fills transaction details", () => {
 
-    // Transaction Type
+    cy.fixture("transactionData").then((data) => {
 
-    transactionPage.transactionTypeSelect()
-        .select("transfer", { force: true })
-        .should("have.value", "transfer");
-
-    // From Account
-
-    transactionPage.fromAccountSelect()
-        .select("Checking Account - $2,500.00", {
-            force: true
-        });
-
-    // To Account
-
-    transactionPage.toAccountSelect()
-        .select("Primary Savings (1001234567)", {
-            force: true
-        });
-
-    // Amount
-
-    transactionPage.amountField()
-        .clear()
-        .type("10");
-
-    // Description
-
-    transactionPage.descriptionField()
-        .clear()
-        .type("Smoke Test Transaction");
-
-    // Notification
-
-    transactionPage.notificationCheckbox()
-        .click({ force: true });
-
-    // Submit
-
-    transactionPage.submitButton()
-        .should("be.enabled")
-        .click();
+        transactionPage.fillTransactionDetails(
+            data.transaction
+        );
+    });
 });
 
+// Submit transaction
+When("User submits transaction", () => {
+
+    transactionPage.submitTransaction();
+});
+
+// Navigate back to dashboard
+When("User navigates back to dashboard", () => {
+
+    cy.visit("/bank/dashboard");
+
+    transactionPage.newTransactionButton()
+        .should("be.visible");
+});
+
+// Cancel transaction
+When("User clicks Cancel button", () => {
+
+    transactionPage.cancelTransaction();
+});
+
+// Verify transaction created successfully
 Then("Transaction should be created successfully", () => {
 
-    cy.contains("Smoke Test Transaction", {
-        timeout: 10000
-    }).should("exist");
+    cy.fixture("transactionData").then((data) => {
 
+        cy.contains(
+            data.transaction.description,
+            {
+                timeout: 10000
+            }
+        ).should("exist");
+    });
+});
+
+// Verify transaction popup closed after cancel
+Then("Transaction popup should be closed", () => {
+
+    cy.get('[role="dialog"]')
+        .should("not.exist");
 });

@@ -1,3 +1,4 @@
+@regression
 Feature: JavaScript Concepts Demonstration
 
 Scenario: Demonstrate Arrays Loops Variables Conditions And Aliases

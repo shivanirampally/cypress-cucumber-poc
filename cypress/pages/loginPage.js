@@ -1,5 +1,5 @@
 class LoginPage {
-
+//Username, password, login button, logout button, user role label
     usernameField() {
         return cy.get("#username");
     }
@@ -40,6 +40,7 @@ class LoginPage {
             .click();
     }
 
+//Verify the logged in user role and dashboard page
     verifyLoggedInUser(role) {
 
         this.userRoleLabel()

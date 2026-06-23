@@ -1,3 +1,4 @@
+@smoke
 Feature: Home Page
 
 Scenario: Verify Home Page
