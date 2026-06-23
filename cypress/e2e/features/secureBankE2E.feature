@@ -1,17 +1,21 @@
 Feature: Secure Bank End To End Flow
 
-Scenario: Admin and Viewer Login Validation
+Scenario: Admin and Viewer End To End Validation
 
-  Given User opens QA Playground website
+    Given User opens QA Playground website
 
-  When User navigates to Secure Bank application
+    When User navigates to Secure Bank application
 
-  And User logs in as "admin"
+    And User logs in as "admin"
 
-  Then User role "admin" should be displayed
+    Then User role "admin" should be displayed
 
-  When User logs out
+    And New Transaction button should be visible
 
-  And User logs in as "viewer"
+    When User logs out
 
-  Then User role "viewer" should be displayed
+    And User logs in as "viewer"
+
+    Then User role "viewer" should be displayed
+
+    And New Transaction button should be visible
