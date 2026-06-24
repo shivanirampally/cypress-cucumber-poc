@@ -1,0 +1,26 @@
+{
+  "name": "cypress-poc-qaplayground",
+  "version": "1.0.0",
+  "description": "JavaScript Programs Learning Branch",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+
+    "run-addTwoNumbers": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers| ForEach-Object { node $_.FullName }\"",
+    "run-subtraction": "powershell -Command \"Get-ChildItem javascript-programs/subtraction| ForEach-Object { node $_.FullName }\"",
+    "run-multiplication": "powershell -Command \"Get-ChildItem javascript-programs/multiplication| ForEach-Object { node $_.FullName }\"",
+    "run-division": "powershell -Command \"Get-ChildItem javascript-programs/division| ForEach-Object { node $_.FullName }\""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/shivanirampally/cypress-cucumber-poc.git"
+  },
+  "keywords": [],
+  "author": "Shivani Rampally",
+  "license": "ISC",
+  "type": "module",
+  "bugs": {
+    "url": "https://github.com/shivanirampally/cypress-cucumber-poc/issues"
+  },
+  "homepage": "https://github.com/shivanirampally/cypress-cucumber-poc#readme"
+}
