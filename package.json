@@ -9,7 +9,14 @@
     "run-addTwoNumbers": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers| ForEach-Object { node $_.FullName }\"",
     "run-subtraction": "powershell -Command \"Get-ChildItem javascript-programs/subtraction| ForEach-Object { node $_.FullName }\"",
     "run-multiplication": "powershell -Command \"Get-ChildItem javascript-programs/multiplication| ForEach-Object { node $_.FullName }\"",
-    "run-division": "powershell -Command \"Get-ChildItem javascript-programs/division| ForEach-Object { node $_.FullName }\""
+    "run-division": "powershell -Command \"Get-ChildItem javascript-programs/division| ForEach-Object { node $_.FullName }\"",
+    "main-simple": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
+    "main-arrow": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
+    "main-iife": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
+    "main-async": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
+    "main-module": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
+    "run-all-additiontwonumbers": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers| ForEach-Object { node $_.FullName }\""
+
   },
   "repository": {
     "type": "git",
