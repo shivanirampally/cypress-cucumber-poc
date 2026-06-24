@@ -3,21 +3,29 @@
   "version": "1.0.0",
   "description": "JavaScript Programs Learning Branch",
   "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+"scripts": {
+  "test": "echo \"Error: no test specified\" && exit 1",
 
-    "run-addTwoNumbers": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers| ForEach-Object { node $_.FullName }\"",
-    "run-subtraction": "powershell -Command \"Get-ChildItem javascript-programs/subtraction| ForEach-Object { node $_.FullName }\"",
-    "run-multiplication": "powershell -Command \"Get-ChildItem javascript-programs/multiplication| ForEach-Object { node $_.FullName }\"",
-    "run-division": "powershell -Command \"Get-ChildItem javascript-programs/division| ForEach-Object { node $_.FullName }\"",
-    "main-simple": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
-    "main-arrow": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
-    "main-iife": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
-    "main-async": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
-    "main-module": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
-    "run-all-additiontwonumbers": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers| ForEach-Object { node $_.FullName }\""
+  "run-addition": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers | ForEach-Object { node $_.FullName }\"",
+  "addition-logic": "powershell -Command \"Get-ChildItem javascript-programs/addTwoNumbers -Filter *.js | Where-Object { $_.Name -ne 'addition-MainMethods.js' } | ForEach-Object { node $_.FullName }\"",
+  "addition-mainmethods": "powershell -Command \"node javascript-programs/addTwoNumbers/addition-MainMethods.js\"",
 
-  },
+  "run-subtraction": "powershell -Command \"Get-ChildItem javascript-programs/subtractTwoNumbers | ForEach-Object { node $_.FullName }\"",
+  "subtraction-logic": "powershell -Command \"Get-ChildItem javascript-programs/subtractTwoNumbers -Filter *.js | Where-Object { $_.Name -ne 'subtraction-MainMethods.js' } | ForEach-Object { node $_.FullName }\"",
+  "subtraction-mainmethods": "powershell -Command \"node javascript-programs/subtractTwoNumbers/subtraction-MainMethods.js\"",
+
+  "run-multiplication": "powershell -Command \"Get-ChildItem javascript-programs/multiplication | ForEach-Object { node $_.FullName }\"",
+  "multiplication-logic": "powershell -Command \"Get-ChildItem javascript-programs/multiplication -Filter *.js | Where-Object { $_.Name -ne 'multiplication-MainMethods.js' } | ForEach-Object { node $_.FullName }\"",
+  "multiplication-mainmethods": "powershell -Command \"node javascript-programs/multiplication/multiplication-MainMethods.js\"",
+
+  "run-division": "powershell -Command \"Get-ChildItem javascript-programs/division | ForEach-Object { node $_.FullName }\"",
+  "division-logic": "powershell -Command \"Get-ChildItem javascript-programs/division -Filter *.js | Where-Object { $_.Name -ne 'division-MainMethods.js' } | ForEach-Object { node $_.FullName }\"",
+  "division-mainmethods": "powershell -Command \"node javascript-programs/division/division-MainMethods.js\"",
+
+  "run-all-logic": "powershell -Command \"foreach ($folder in 'addTwoNumbers','subtractTwoNumbers','multiplication','division') { Get-ChildItem javascript-programs/$folder -Filter *.js | Where-Object { $_.Name -notmatch 'MainMethods' } | ForEach-Object { node $_.FullName } }\"",
+  "run-all-mainmethods": "powershell -Command \"foreach ($folder in 'addTwoNumbers','subtractTwoNumbers','multiplication','division') { $file = Join-Path javascript-programs $folder ($folder.Split('-')[0] + '-MainMethods.js'); if (Test-Path $file) { node $file } }\""
+}
+,
   "repository": {
     "type": "git",
     "url": "git+https://github.com/shivanirampally/cypress-cucumber-poc.git"
