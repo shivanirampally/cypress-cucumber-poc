@@ -1,0 +1,5 @@
+//Find factorial of a number using increment.
+
+let n = 5, fact = 1;
+for (let i = 1; i <= n; i++) fact *= i;
+console.log("Factorial:", fact);
