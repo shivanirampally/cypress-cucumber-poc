@@ -1,0 +1,4 @@
+//Find the day of the week given a number of days elapsed
+let daysElapsed = 15;
+let dayNames = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+console.log(`Day after ${daysElapsed} days = ${dayNames[daysElapsed % 7]}`);
