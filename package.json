@@ -4,14 +4,14 @@
   "description": "Cypress Cucumber POC for QA Playground",
   "main": "index.js",
   "scripts": {
-    "cy:open": "cypress open",
-    "cy:run": "cypress run",
-    "smoke": "cypress run --spec cypress/e2e/features/home.feature,cypress/e2e/features/bankPage.feature,cypress/e2e/features/transactionSmokeTest.feature",
-    "regression": "cypress run --spec cypress/e2e/features/login.feature,cypress/e2e/features/loginValidation.feature,cypress/e2e/features/javascriptConcepts.feature",
-    "e2e": "cypress run --spec cypress/e2e/features/secureBankE2E.feature",
-    "report": "marge mochawesome-report/*.json -f report -o mochawesome-report",
-    "test:report": "cypress run && marge mochawesome-report/*.json -f report -o mochawesome-report"
-  },
+  "cy:open": "npx cypress open",
+  "cy:run": "npx cypress run",
+  "smoke": "npx cypress run --spec cypress/e2e/features/home.feature,cypress/e2e/features/bankPage.feature,cypress/e2e/features/transactionSmokeTest.feature",
+  "regression": "npx cypress run --spec cypress/e2e/features/login.feature,cypress/e2e/features/loginValidation.feature,cypress/e2e/features/javascriptConcepts.feature",
+  "e2e": "npx cypress run --spec cypress/e2e/features/secureBankE2E.feature",
+  "report": "npx marge mochawesome-report/*.json -f report -o mochawesome-report",
+  "test:report": "npx cypress run && npx marge mochawesome-report/*.json -f report -o mochawesome-report"
+},
   "keywords": [
     "cypress",
     "cucumber",
@@ -24,7 +24,7 @@
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
-    "cypress": "^15.17.0",
+    "cypress": "^15.18.0",
     "cypress-xpath": "^2.0.1",
     "esbuild": "^0.28.1",
     "mochawesome": "^7.1.4",
