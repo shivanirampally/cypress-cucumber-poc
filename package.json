@@ -3,14 +3,15 @@
   "version": "1.0.0",
   "description": "Cypress Cucumber POC for QA Playground",
   "main": "index.js",
- "scripts": {
-  "cy:open": "npx cypress open",
-  "cy:run": "npx cypress run --headed --browser chrome",
-  "smoke": "npx cypress run --headed --browser chrome --spec cypress/e2e/features/home.feature,cypress/e2e/features/bankPage.feature,cypress/e2e/features/transactionSmokeTest.feature",
-  "regression": "npx cypress run --headed --browser chrome --spec cypress/e2e/features/login.feature,cypress/e2e/features/loginValidation.feature,cypress/e2e/features/javascriptConcepts.feature",
-  "e2e": "npx cypress run --headed --browser chrome --spec cypress/e2e/features/secureBankE2E.feature",
-  "report": "npx marge mochawesome-report/*.json -f report -o mochawesome-report",
-  "test:report": "npx cypress run --headed --browser chrome && npx marge mochawesome-report/*.json -f report -o mochawesome-report"
+"scripts": {
+  "cy:open": "cypress open",
+  "cy:run": "cypress run --headed --browser chrome",
+  "smoke": "cypress run --headed --browser chrome --env tags=@smoke",
+  "smokeTest": "cypress run --headed --browser chrome --spec 'cypress/e2e/features/smokeTest.feature'",  
+  "regression": "cypress run --headed --browser chrome --env tags=@regression",
+  "e2e": "cypress run --headed --browser chrome --env tags=@e2e",
+  "report": "marge mochawesome-report/*.json -f report -o mochawesome-report",
+  "test:report": "cypress run --headed --browser chrome && marge mochawesome-report/*.json -f report -o mochawesome-report"
 },
   "keywords": [
     "cypress",
