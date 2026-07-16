@@ -18,13 +18,15 @@ async function setupNodeEvents(on, config) {
 
 module.exports = defineConfig({
   screenshotOnRunFailure: true,
+  viewportWidth: 1440,
+  viewportHeight: 900,
   e2e: {
     baseUrl: "https://qaplayground.com",
     specPattern: "cypress/e2e/features/*.feature",
     setupNodeEvents,
   },
     reporter: "mochawesome",
-  reporterOptions: {
+    reporterOptions: {
     reportDir: "mochawesome-report",
     overwrite: false,
     html: true,

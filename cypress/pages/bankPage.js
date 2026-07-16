@@ -1,4 +1,11 @@
 class BankPage {
+ //================================================
+ //Bank page Locators
+ //Topic: Text Locator
+ //================================================
+pageHeader() {
+    return cy.contains("QA Demo Apps");
+}   
 //Open Bank App button
     openBankAppButton() {
         return cy.contains("Open Bank App");
