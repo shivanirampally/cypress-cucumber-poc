@@ -1,0 +1,8 @@
+{
+  "standardTransfer": {
+    "fromAccount": "Checking",
+    "toAccount": "Savings",
+    "amount": "500",
+    "memo": "Monthly Savings"
+  }
+}

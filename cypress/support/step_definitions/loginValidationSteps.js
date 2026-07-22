@@ -11,11 +11,9 @@ import LoginPage from "../../pages/loginPage";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 // Enter login credentials
-
 When(
     "User enters username {string} and password {string}",
     (username, password) => {
-
         const enteredUsername = username.trim();
         const enteredPassword = password.trim();
 
@@ -25,26 +23,20 @@ When(
             enteredUsername,
             enteredPassword
         );
-
     }
 );
 
 // Verify login result
-
 Then(
     "Login result should be {string}",
     (result) => {
-
         const loginResult = result.toLowerCase();
-
         if (loginResult === "success") {
-
             LoginPage.verifyDashboard();
             LoginPage.logout();
-
             return;
         }
-
+        
         LoginPage.verifyLoginPage();
 
     }
