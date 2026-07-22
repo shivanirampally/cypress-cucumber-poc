@@ -6,11 +6,11 @@ class HomePage{
     //Topic: JavaScript Arrays & Objects    
     //================================================
    navigationMenus = [
-        { name: "Home",       locator: 'a.nav-module__Efbrta__link[href="/"]' },
-        { name: "Practice",   locator: 'a.nav-module__Efbrta__link[href="/practice"]' },
-        { name: "Demo Apps",  locator: 'a.nav-module__Efbrta__link[href="/demo"]' },
-        { name: "Challenges", locator: 'a.nav-module__Efbrta__link[href="/challenges"]' },
-        { name: "Blogs",      locator: 'a.nav-module__Efbrta__link[href="/blog"]' }
+        { name: "Home", href: "/" },
+        { name: "Practice", href: "/practice" },
+        { name: "Demo Apps", href: "/demo" },
+        { name: "Challenges", href: "/challenges" },
+        { name: "Blogs", href: "/blog" }
     ];
 
     //================================================

@@ -1,5 +1,5 @@
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import bankPage from "../../pages/bankPage";
+import bankPage from "../../pages/demoAppsPage";
 import transactionPage from "../../pages/transactionPage";
 
 // Verify New Transaction button is displayed

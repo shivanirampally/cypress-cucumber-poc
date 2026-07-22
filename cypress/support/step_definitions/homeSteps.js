@@ -1,6 +1,6 @@
 import { Given,When, Then } from "@badeball/cypress-cucumber-preprocessor";
 import HomePage from "../../pages/homePage";
-import BankPage from "../../pages/bankPage";
+import BankPage from "../../pages/demoAppsPage";
 
 // Launch QA Playground application
 Given("User opens QA Playground website", () => {
