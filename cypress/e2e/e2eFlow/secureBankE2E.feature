@@ -1,40 +1,19 @@
 @e2e
-Feature: Secure Bank End To End Flow
+Feature: Secure Bank End-to-End Flow
 
-Scenario: Admin and Viewer End To End Validation
+Scenario: Verify complete user journey
 
     Given User opens QA Playground website
+    Then Home page header should be displayed
 
-    When User navigates to Secure Bank application
+    When User clicks on Demo Apps menu
+    Then Demo Apps page should be displayed
 
-    And User logs in as "admin"
+    When User opens Bank Demo App
+    Then Login page should be displayed
 
-    Then User role "admin" should be displayed
-
-    And New Transaction button should be visible
-
-    When User opens New Transaction popup
-
-    Then Transaction popup should be displayed
-
-    When User clicks Cancel button
-
-    Then Transaction popup should be closed
+    When User logs in as "standard_user"
+    Then Dashboard should be displayed
 
     When User logs out
-
-    And User logs in as "viewer"
-
-    Then User role "viewer" should be displayed
-
-    And New Transaction button should be visible
-
-    When User opens New Transaction popup
-
-    Then Transaction popup should be displayed
-
-    When User clicks Cancel button
-
-    Then Transaction popup should be closed
-
-    When User logs out
+    Then Login page should be displayed

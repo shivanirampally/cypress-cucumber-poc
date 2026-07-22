@@ -23,9 +23,23 @@ class HomePage {
     navigationMenu(menu) {
 
         return this.navigationBar()
-            .find(`a[href="${menu.href}"]`);
+            .contains("a", menu.name);
 
     }
+
+    // Open navigation menu
+    // Open navigation menu
+    openNavigationMenu(menu) {
+
+        this.navigationBar()
+            .contains("a", menu.name)
+            .should("be.visible");
+
+        this.navigationBar()
+            .contains("a", menu.name)
+            .click();
+
+}
 
 }
 

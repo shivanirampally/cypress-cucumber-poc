@@ -45,7 +45,7 @@
     {
       "account": "admin_user",
       "username": "admin_user",
-      "password": "bank_sauce",
+      "password": "admin_sauce",
       "expected": "admin",
       "active": true
     }

@@ -11,7 +11,7 @@ Given("User is on QA Demo Apps page", () => {
 });
 
 // Verify Demo Apps page
-Then("QA Demo Apps page should be displayed", () => {
+Then("Demo Apps page should be displayed", () => {
 
     cy.location("pathname")
         .should("eq", "/demo");
@@ -33,18 +33,15 @@ Then("Bank Demo App card should be displayed", () => {
 When("User opens Bank Demo App", () => {
 
     DemoAppsPage.bankDemoCard()
+        .should("be.visible")
         .invoke("removeAttr", "target")
         .click();
 
 });
 
-// Verify Secure Bank Login
+// Verify Secure Bank Login page
 Then("Secure Bank Login page should be displayed", () => {
 
-    cy.location("pathname")
-        .should("eq", "/bank/login");
-
-    LoginPage.pageHeader()
-        .should("be.visible");
+    LoginPage.verifyLoginPage();
 
 });

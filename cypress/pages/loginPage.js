@@ -1,28 +1,28 @@
 class LoginPage {
 
-    // Login page locators
-
-    usernameField() {
-        return cy.get("#username");
-    }
-
-    passwordField() {
-        return cy.get("#password");
-    }
-
-    loginButton() {
-        return cy.get('[data-testid="login-button"]');
-    }
-
-    logoutButton() {
-        return cy.contains("Logout");
-    }
+    // Login page elements
 
     pageHeader() {
         return cy.contains("SecureBank");
     }
 
-    // Login
+    usernameField() {
+        return cy.get('[data-testid="login-username-input"]');
+    }
+
+    passwordField() {
+        return cy.get('[data-testid="login-password-input"]');
+    }
+
+    loginButton() {
+        return cy.get('[data-testid="login-submit-btn"]');
+    }
+
+    logoutButton() {
+        return cy.get('[data-testid="topbar-logout-btn"]');
+    }
+
+    // Login actions
 
     login(username = "", password = "") {
 
@@ -44,15 +44,26 @@ class LoginPage {
 
     }
 
-    // Logout
-
     logout() {
 
         this.logoutButton().click();
 
     }
 
-    // Verify Dashboard
+    // Login validations
+
+    verifyLoginPage() {
+
+        cy.location("pathname")
+            .should("eq", "/bank/login");
+
+        this.pageHeader()
+            .should("be.visible");
+
+        this.loginButton()
+            .should("be.visible");
+
+    }
 
     verifyDashboard() {
 
@@ -63,18 +74,6 @@ class LoginPage {
             .should("be.visible");
 
         this.logoutButton()
-            .should("be.visible");
-
-    }
-
-    // Verify Login Page
-
-    verifyLoginPage() {
-
-        cy.location("pathname")
-            .should("eq", "/bank/login");
-
-        this.loginButton()
             .should("be.visible");
 
     }

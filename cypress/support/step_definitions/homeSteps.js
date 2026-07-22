@@ -1,15 +1,16 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
+
 import HomePage from "../../pages/homePage";
 import DemoAppsPage from "../../pages/demoAppsPage";
 
-// Launch QA Playground
+// Open QA Playground
 Given("User opens QA Playground website", () => {
 
     cy.visit("/");
 
 });
 
-// Verify Home Page
+// Verify Home page
 Then("Home page header should be displayed", () => {
 
     HomePage.homePageHeader()
@@ -41,18 +42,6 @@ When("User clicks on Demo Apps menu", () => {
         menu => menu.name === "Demo Apps"
     );
 
-    HomePage.navigationMenu(demoApps)
-        .click();
-
-});
-
-// Verify Demo Apps page
-Then("Demo Apps page should be displayed", () => {
-
-    cy.location("pathname")
-        .should("eq", "/demo");
-
-    DemoAppsPage.pageHeader()
-        .should("be.visible");
+    HomePage.openNavigationMenu(demoApps);
 
 });

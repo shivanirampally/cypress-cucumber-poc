@@ -1,120 +1,55 @@
 import LoginPage from "../../pages/loginPage";
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-//================================================
-// Navigation
-//================================================
-
-/**
- * Opens the Secure Bank Login page.
- */
+// Open Secure Bank
 Given("User opens Secure Bank page", () => {
 
     cy.visit("/bank");
 
 });
 
-//================================================
-// Login Actions
-//================================================
-
-/**
- * Logs in using account credentials retrieved
- * from the fixture file.
- */
+// Login using account
 When("User logs in as {string}", (account) => {
 
-    cy.fixture("loginData").then(({ users }) => {
+    cy.fixture("loginData")
+        .then(({ users }) => {
 
-        // Find matching account from fixture data
-        const selectedUser = users.find(
-            user => user.account === account
-        );
+            const selectedUser =
+                users.find(
+                    user => user.account === account
+                );
 
-        // Ensure account exists before login
-        expect(
-            selectedUser,
-            `Account '${account}' should exist`
-        ).to.not.be.undefined;
+            expect(
+                selectedUser,
+                `Account '${account}' should exist`
+            ).to.not.be.undefined;
 
-        // Perform login
-        LoginPage.login(
-            selectedUser.username,
-            selectedUser.password
-        );
+            LoginPage.login(
+                selectedUser.username,
+                selectedUser.password
+            );
 
-    });
+        });
 
 });
 
-/**
- * Logs out from the application.
- */
+// Logout
 When("User logs out", () => {
 
     LoginPage.logout();
 
 });
 
-//================================================
-// Login Validations
-//================================================
+// Verify Login page
+Then("Login page should be displayed", () => {
 
-/**
- * Validates application behaviour
- * for different account types.
- *
- * JavaScript Concept:
- * switch statement
- */
-Then("{string} account should be validated", (account) => {
+    LoginPage.verifyLoginPage();
 
-    switch (account) {
+});
 
-        case "standard_user":
+// Verify Dashboard
+Then("Dashboard should be displayed", () => {
 
-            LoginPage.verifyDashboard();
-            LoginPage.logout();
-            break;
-
-        case "locked_user":
-
-            LoginPage.verifyLockedAccount();
-            break;
-
-        case "frozen_user":
-
-            LoginPage.verifyFrozenAccount();
-            LoginPage.logout();
-            break;
-
-        case "overdraft_user":
-
-            LoginPage.verifyOverdraftAccount();
-            LoginPage.logout();
-            break;
-
-        case "slow_user":
-
-            LoginPage.verifyDashboard();
-            LoginPage.logout();
-            break;
-
-        case "error_user":
-
-            LoginPage.verifyErrorAccount();
-            break;
-
-        case "admin_user":
-
-            LoginPage.verifyAdminDashboard();
-            LoginPage.logout();
-            break;
-
-        default:
-
-            throw new Error(`Unsupported account type: ${account}`);
-
-    }
+    LoginPage.verifyDashboard();
 
 });

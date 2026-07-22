@@ -1,17 +1,18 @@
 @regression
 Feature: Login Validation
 
-Scenario Outline: Verify Login Validation
+Scenario Outline: Verify login validation
 
-  Given User opens Secure Bank page
+Given User opens Secure Bank page
 
-  When User enters username "<username>" and password "<password>"
+When User enters username "<username>" and password "<password>"
 
-  Then Login result should be "<result>"
+Then Login result should be "<result>"
 
 Examples:
-| username | password | result  |
-| admin    | admin123 | success |
-| admin    | wrong123 | failure |
-|          | admin123 | failure |
-| admin    |          | failure |
+
+| username       | password     | result  |
+| standard_user  | bank_sauce   | success |
+| standard_user  | wrong123     | failure |
+|                | bank_sauce   | failure |
+| standard_user  |              | failure |

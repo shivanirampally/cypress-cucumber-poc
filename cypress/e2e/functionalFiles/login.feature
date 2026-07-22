@@ -1,13 +1,12 @@
-@smoke
-Feature: Role Based Access Validation
+@login
+Feature: Secure Bank Login
 
-Scenario Outline: Verify Role Access
+  Scenario: Verify successful login with valid credentials
 
-  Given User opens Secure Bank page
-  When User logs in as "<role>"
-  Then "<role>" user should be logged in successfully
+    Given User opens Secure Bank page
+    Then Login page should be displayed
+    
+    When User logs in as "standard_user"
+    Then Dashboard should be displayed
 
-Examples:
-| role   |
-| admin  |
-| viewer |
+   

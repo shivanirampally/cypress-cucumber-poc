@@ -1,48 +1,51 @@
+/**js topics covered
+Variables (const)
+trim()
+Template Literals
+if / else
+return
+Functions
+String methods**/
+
 import LoginPage from "../../pages/loginPage";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-//================================================
-// Login Actions
-//================================================
+// Enter login credentials
 
-/**
- * Enters login credentials and submits login request.
- * Reuses Login Page business method.
- */
 When(
     "User enters username {string} and password {string}",
     (username, password) => {
 
-        LoginPage.login(username, password);
+        const enteredUsername = username.trim();
+        const enteredPassword = password.trim();
+
+        cy.log(`Attempting login with user: ${enteredUsername || "Empty Username"}`);
+
+        LoginPage.login(
+            enteredUsername,
+            enteredPassword
+        );
 
     }
 );
 
-//================================================
-// Login Validations
-//================================================
+// Verify login result
 
-/**
- * Validates login result for
- * positive and negative scenarios.
- */
 Then(
     "Login result should be {string}",
     (result) => {
 
-        if (result === "success") {
+        const loginResult = result.toLowerCase();
+
+        if (loginResult === "success") {
 
             LoginPage.verifyDashboard();
-
             LoginPage.logout();
 
-        } else {
-
-            LoginPage.verifyLoginPage();
-
+            return;
         }
 
-        cy.log(`Login Validation : ${result}`);
+        LoginPage.verifyLoginPage();
 
     }
 );
