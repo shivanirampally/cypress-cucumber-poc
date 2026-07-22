@@ -1,11 +1,7 @@
-class HomePage{
+class HomePage {
 
-    //================================================    
-    //Home page Constants
-    //Stores the Home Page navigation menu details.
-    //Topic: JavaScript Arrays & Objects    
-    //================================================
-   navigationMenus = [
+    // Navigation menu details
+    navigationMenus = [
         { name: "Home", href: "/" },
         { name: "Practice", href: "/practice" },
         { name: "Demo Apps", href: "/demo" },
@@ -13,19 +9,24 @@ class HomePage{
         { name: "Blogs", href: "/blog" }
     ];
 
-    //================================================
-    //Home Page locators
-    //Topic: Cypress Locators (CSS selector & Tag locator)
-    //================================================
+    // Home page header
     homePageHeader() {
-        return cy.get("h1#home-hero-title");
+        return cy.get("#home-hero-title");
     }
 
-    // Locate a specific Navigation Menu Item
-    //Topic: Cypress CSS Selector + DOM Scoping using find()
-    navigationMenu(menu) {
-        return cy.contains(menu.locator, menu.name);
+    // Main navigation
+    navigationBar() {
+        return cy.get("#nav");
     }
+
+    // Navigation menu
+    navigationMenu(menu) {
+
+        return this.navigationBar()
+            .find(`a[href="${menu.href}"]`);
+
+    }
+
 }
 
 export default new HomePage();

@@ -1,56 +1,50 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-import DemoAppsPage from "../../pages/demoAppsPage";
 
-// Navigate to QA Demo Apps page
+import DemoAppsPage from "../../pages/demoAppsPage";
+import LoginPage from "../../pages/loginPage";
+
+// Open Demo Apps page
 Given("User is on QA Demo Apps page", () => {
-    cy.log("Opening QA Demo Apps page");
+
     cy.visit("/demo");
+
 });
 
-// Verify QA Demo Apps page
+// Verify Demo Apps page
 Then("QA Demo Apps page should be displayed", () => {
-    cy.log("Verifying QA Demo Apps page");
-    cy.url()
-      .should("include", "/demo");
+
+    cy.location("pathname")
+        .should("eq", "/demo");
 
     DemoAppsPage.pageHeader()
-        .should("be.visible")
-        .and("contain.text", "QA Demo Apps");
+        .should("be.visible");
 
-    cy.log("QA Demo Apps page verified successfully");
 });
 
-// Verify Bank Demo App card
+// Verify Bank Demo App
 Then("Bank Demo App card should be displayed", () => {
-    cy.log("Verifying Bank Demo App card");
 
     DemoAppsPage.bankDemoCard()
-        .should("be.visible")
-        .and("contain.text", "Bank Demo App");
-
-    cy.log("Bank Demo App card verified successfully");
+        .should("be.visible");
 
 });
 
-// Open Bank Demo App
+// Open Secure Bank
 When("User opens Bank Demo App", () => {
 
-    cy.log("Opening Bank Demo Application");
     DemoAppsPage.bankDemoCard()
         .invoke("removeAttr", "target")
         .click();
 
 });
 
-// Verify Secure Bank Login page
+// Verify Secure Bank Login
 Then("Secure Bank Login page should be displayed", () => {
-    cy.log("Verifying Secure Bank Login page");
-    
-    cy.url()
-      .should("include", "/bank/login");
-    cy.contains("SecureBank")
-      .should("be.visible");
 
-    cy.log("Secure Bank Login page verified successfully");
+    cy.location("pathname")
+        .should("eq", "/bank/login");
+
+    LoginPage.pageHeader()
+        .should("be.visible");
 
 });

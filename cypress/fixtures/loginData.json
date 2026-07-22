@@ -1,14 +1,53 @@
 {
   "users": [
     {
-      "role": "admin",
-      "username": "admin",
-      "password": "admin123"
+      "account": "standard_user",
+      "username": "standard_user",
+      "password": "bank_sauce",
+      "expected": "dashboard",
+      "active": true
     },
     {
-      "role": "viewer",
-      "username": "viewer",
-      "password": "viewer123"
+      "account": "locked_user",
+      "username": "locked_user",
+      "password": "bank_sauce",
+      "expected": "locked",
+      "active": true
+    },
+    {
+      "account": "frozen_user",
+      "username": "frozen_user",
+      "password": "bank_sauce",
+      "expected": "frozen",
+      "active": true
+    },
+    {
+      "account": "overdraft_user",
+      "username": "overdraft_user",
+      "password": "bank_sauce",
+      "expected": "overdraft",
+      "active": true
+    },
+    {
+      "account": "slow_user",
+      "username": "slow_user",
+      "password": "bank_sauce",
+      "expected": "slow",
+      "active": true
+    },
+    {
+      "account": "error_user",
+      "username": "error_user",
+      "password": "bank_sauce",
+      "expected": "error",
+      "active": true
+    },
+    {
+      "account": "admin_user",
+      "username": "admin_user",
+      "password": "bank_sauce",
+      "expected": "admin",
+      "active": true
     }
   ]
 }

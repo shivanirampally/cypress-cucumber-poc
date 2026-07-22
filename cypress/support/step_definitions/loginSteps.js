@@ -1,52 +1,120 @@
 import LoginPage from "../../pages/loginPage";
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
-// Open Secure Bank login page
+//================================================
+// Navigation
+//================================================
+
+/**
+ * Opens the Secure Bank Login page.
+ */
 Given("User opens Secure Bank page", () => {
 
     cy.visit("/bank");
+
 });
 
-// Login using role-based credentials from fixture file
-When("User logs in as {string}", (role) => {
+//================================================
+// Login Actions
+//================================================
 
-    cy.fixture("loginData").then((data) => {
+/**
+ * Logs in using account credentials retrieved
+ * from the fixture file.
+ */
+When("User logs in as {string}", (account) => {
 
-        // Find user matching requested role
-        const user = data.users.find(
-            user => user.role === role
+    cy.fixture("loginData").then(({ users }) => {
+
+        // Find matching account from fixture data
+        const selectedUser = users.find(
+            user => user.account === account
         );
 
-        // Verify user exists in fixture data
+        // Ensure account exists before login
         expect(
-            user,
-            `User with role ${role} should exist`
+            selectedUser,
+            `Account '${account}' should exist`
         ).to.not.be.undefined;
 
         // Perform login
         LoginPage.login(
-            user.username,
-            user.password
+            selectedUser.username,
+            selectedUser.password
         );
+
     });
+
 });
 
-// Logout from application
+/**
+ * Logs out from the application.
+ */
 When("User logs out", () => {
 
     LoginPage.logout();
+
 });
 
-// Verify logged-in user role and dashboard access
-Then("User role {string} should be displayed", (role) => {
+//================================================
+// Login Validations
+//================================================
 
-    LoginPage.verifyLoggedInUser(role);
+/**
+ * Validates application behaviour
+ * for different account types.
+ *
+ * JavaScript Concept:
+ * switch statement
+ */
+Then("{string} account should be validated", (account) => {
 
-    cy.log(`${role} logged in successfully`);
-});
+    switch (account) {
 
-// Verify successful login for role-based access scenario
-Then("{string} user should be logged in successfully", (role) => {
+        case "standard_user":
 
-    LoginPage.verifyLoggedInUser(role);
+            LoginPage.verifyDashboard();
+            LoginPage.logout();
+            break;
+
+        case "locked_user":
+
+            LoginPage.verifyLockedAccount();
+            break;
+
+        case "frozen_user":
+
+            LoginPage.verifyFrozenAccount();
+            LoginPage.logout();
+            break;
+
+        case "overdraft_user":
+
+            LoginPage.verifyOverdraftAccount();
+            LoginPage.logout();
+            break;
+
+        case "slow_user":
+
+            LoginPage.verifyDashboard();
+            LoginPage.logout();
+            break;
+
+        case "error_user":
+
+            LoginPage.verifyErrorAccount();
+            break;
+
+        case "admin_user":
+
+            LoginPage.verifyAdminDashboard();
+            LoginPage.logout();
+            break;
+
+        default:
+
+            throw new Error(`Unsupported account type: ${account}`);
+
+    }
+
 });

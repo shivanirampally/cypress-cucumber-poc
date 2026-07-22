@@ -22,7 +22,7 @@ module.exports = defineConfig({
   viewportHeight: 900,
   e2e: {
     baseUrl: "https://qaplayground.com",
-    specPattern: "cypress/e2e/features/*.feature",
+    specPattern:"cypress/e2e/**/*.feature",
     setupNodeEvents,
   },
     reporter: "mochawesome",

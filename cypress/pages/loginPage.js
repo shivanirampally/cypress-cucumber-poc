@@ -1,5 +1,7 @@
 class LoginPage {
-//Username, password, login button, logout button, user role label
+
+    // Login page locators
+
     usernameField() {
         return cy.get("#username");
     }
@@ -16,42 +18,67 @@ class LoginPage {
         return cy.contains("Logout");
     }
 
-    userRoleLabel() {
-        return cy.get("header");
+    pageHeader() {
+        return cy.contains("SecureBank");
     }
 
-    login(username, password) {
+    // Login
 
-        this.usernameField()
-            .clear()
-            .type(username);
+    login(username = "", password = "") {
 
-        this.passwordField()
-            .clear()
-            .type(password);
+        this.usernameField().clear();
 
-        this.loginButton()
-            .click();
+        if (username.trim()) {
+            this.usernameField().type(username);
+        }
+
+        this.passwordField().clear();
+
+        if (password.trim()) {
+            this.passwordField().type(password);
+        }
+
+        cy.log(`Logging in as ${username}`);
+
+        this.loginButton().click();
+
     }
+
+    // Logout
 
     logout() {
 
-        this.logoutButton()
-            .click();
+        this.logoutButton().click();
+
     }
 
-//Verify the logged in user role and dashboard page
-    verifyLoggedInUser(role) {
+    // Verify Dashboard
 
-        this.userRoleLabel()
-            .should("contain.text", role);
+    verifyDashboard() {
 
-        cy.url()
-            .should("include", "/dashboard");
+        cy.location("pathname")
+            .should("eq", "/bank/dashboard");
+
+        cy.contains("Welcome back")
+            .should("be.visible");
 
         this.logoutButton()
             .should("be.visible");
+
     }
+
+    // Verify Login Page
+
+    verifyLoginPage() {
+
+        cy.location("pathname")
+            .should("eq", "/bank/login");
+
+        this.loginButton()
+            .should("be.visible");
+
+    }
+
 }
 
 export default new LoginPage();
