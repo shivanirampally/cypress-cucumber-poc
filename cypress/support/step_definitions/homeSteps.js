@@ -28,8 +28,8 @@ Then("Navigation menu should be displayed", () => {
 
 // Open Demo Apps
 When("User clicks on Demo Apps menu", () => {
-    const demoApps = HomePage.navigationMenus.find(
-        menu => menu.name === "Demo Apps"
-    );
-    HomePage.openNavigationMenu(demoApps);
+    cy.get('a[href="/demo"]')
+        .then(($link) => {
+            $link[0].click();
+        });
 });

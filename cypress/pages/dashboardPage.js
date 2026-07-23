@@ -29,12 +29,21 @@ class DashboardPage {
         return cy.get('[data-testid="recent-transactions-section"]');
     }
 
+    backToDashboardBtn() {
+        return cy.get('[data-testid="back-to-dashboard-btn"]');
+}
+
     // Dashboard Actions
     openAccounts() {
         cy.get('[data-testid="sidebar-link-accounts"]').click();
     }
     openTransfer() {
         cy.get('[data-testid="sidebar-link-transfer"]').click();
+    }
+    navigateToDashboard() {
+        this.backToDashboardBtn()
+            .should("be.visible")
+            .click();
     }
 
     

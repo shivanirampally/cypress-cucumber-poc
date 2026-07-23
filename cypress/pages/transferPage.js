@@ -1,9 +1,6 @@
 class TransferPage {
 
-    // ======================================================
     // Elements
-    // ======================================================
-
     transferForm() {
         return cy.get('[data-testid="transfer-form"]');
     }
@@ -32,31 +29,20 @@ class TransferPage {
         return cy.contains("button", "Confirm Transfer");
     }
 
-    backToDashboardBtn() {
-        return cy.contains("button", "Back to Dashboard");
-    }
 
     makeAnotherTransferBtn() {
         return cy.contains("button", "Make Another Transfer");
     }
 
-    // ======================================================
     // Navigation
-    // ======================================================
-
     openTransferPage() {
+    cy.get('[data-testid="sidebar-link-transfer"]')
+        .should("be.visible")
+        .click();
+}
 
-        cy.contains("Transfer")
-            .click();
-
-    }
-
-    // ======================================================
     // Business Method
-    // ======================================================
-
     transferMoney(data) {
-
         this.validateTransfer(data);
 
         // ---------- From Account ----------
@@ -92,39 +78,28 @@ class TransferPage {
         cy.get("@reviewButton")
             .should("be.enabled")
             .click();
-
     }
 
-    // ======================================================
     // Validations
-    // ======================================================
-
     verifyTransferPage() {
-
         cy.location("pathname")
             .should("eq", "/bank/transfer");
 
         this.transferForm()
             .should("be.visible");
-
     }
 
     verifyReviewPopup() {
-
         cy.contains("Confirm Transfer")
             .should("be.visible");
-
     }
 
     confirmTransfer() {
-
         this.confirmTransferBtn()
             .click();
-
     }
 
     verifyTransferSuccess() {
-
         cy.location("pathname")
             .should("include", "/bank/transfer/confirmation");
 
@@ -136,53 +111,35 @@ class TransferPage {
 
         cy.contains("Transfer Details")
             .should("be.visible");
-
     }
 
     navigateToDashboard() {
-
         this.backToDashboardBtn()
             .click();
-
     }
 
     startAnotherTransfer() {
-
         this.makeAnotherTransferBtn()
             .click();
-
     }
 
-    // ======================================================
     // JavaScript Concepts
-    // ======================================================
-
     validateTransfer(data) {
-
         const amount = Number(data.amount);
 
         // if - else if - else
         if (amount <= 0) {
-
             throw new Error("Transfer amount should be greater than zero.");
-
         } else if (amount > 5000) {
-
             cy.log("High Value Transfer");
-
         } else {
-
             cy.log("Regular Transfer");
-
         }
 
         // Nested if
         if (data.fromAccount !== data.toAccount) {
-
             if (amount > 0) {
-
                 cy.log("Valid Account Selection");
-
             }
 
         }
@@ -192,7 +149,6 @@ class TransferPage {
             amount > 1000
                 ? "Priority"
                 : "Standard";
-
         cy.log(`Transfer Type : ${transferType}`);
 
         // Arrays
@@ -205,9 +161,7 @@ class TransferPage {
 
         // For Loop
         for (let i = 0; i < labels.length; i++) {
-
             cy.log(labels[i]);
-
         }
 
         // For...of Loop
@@ -217,33 +171,22 @@ class TransferPage {
         ];
 
         for (const account of accounts) {
-
             cy.log(account);
-
         }
 
         // While Loop
         let attempt = 1;
-
         while (attempt <= 2) {
-
             cy.log(`Attempt ${attempt}`);
-
             attempt++;
-
         }
 
         // Do...While Loop
         let retry = 1;
-
         do {
-
             cy.log(`Retry ${retry}`);
-
             retry++;
-
         } while (retry <= 2);
-
     }
 
 }

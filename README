@@ -1,0 +1,353 @@
+# Cypress Cucumber POC – QA Playground SecureBank
+
+## Project Overview
+This POC demonstrates a UI automation framework built using Cypress, JavaScript, and Cucumber by following the Page Object Model (POM).
+
+The objective of this POC is to demonstrate the implementation of a UI Automation Framework capable of executing:
+• Functional Tests
+• Smoke Tests
+• Regression Tests
+• End-to-End (E2E) Tests
+using the SecureBank Demo Application available in QA Playground.
+
+---------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------
+# Tech Stack
+| Technology | Version |
+|------------|----------|
+| Cypress | 15.18.0 |
+| JavaScript | ES6 |
+| Cucumber BDD | @badeball/cypress-cucumber-preprocessor |
+| NodeJS | 24.x |
+| Mochawesome | Latest |
+| ESBuild | Latest |
+
+--------------------------------------------------------------------------------------------
+--------------------------------------------------------------------------------------------
+# Framework Architecture
+The framework follows the **Page Object Model (POM)** design pattern.
+Feature File
+        │
+        ▼
+Step Definition
+        │
+        ▼
+Page Object
+        │
+        ▼
+Application Under Test.
+
+Business logic is implemented inside **Page Objects**, while **Step Definitions** remain lightweight and reusable.
+
+----------------------------------------------------------------------------------------------
+----------------------------------------------------------------------------------------------
+# Project Structure
+cypress
+│
+├── e2e
+│   │
+│   ├── functionalFiles
+│   │     ├── home.feature
+│   │     ├── demoApps.feature
+│   │     ├── login.feature
+│   │     ├── dashboard.feature
+│   │     ├── transfer.feature
+│   │     ├── loginValidation.feature
+│   │     ├── accountValidation.feature
+│   │     └── roleValidation.feature
+│   │
+│   ├── smokeTest
+│   │     └── transferMoney.feature
+│   │
+│   ├── regressionTest
+│   │     └── secureBankRoleBasedValidation.feature
+│   │
+│   └── e2eFlow
+│         └── secureBankE2E.feature
+│
+├── fixtures
+│     ├── loginData.json
+│     └── transferData.json
+│
+├── pages
+│     ├── homePage.js
+│     ├── demoAppsPage.js
+│     ├── loginPage.js
+│     ├── dashboardPage.js
+│     └── transferPage.js
+│
+├── support
+│     ├── commands.js
+│     ├── e2e.js
+│     └── step_definitions
+|
+├── screenshots
+└── mochawesome-report
+
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+# Framework Design
+The framework is designed using:
+- Page Object Model
+- Reusable Components
+- Data Driven Testing
+- Cucumber BDD
+- Clean Separation of Business Logic
+- Reusable Step Definitions
+- Fixtures for Test Data
+- Hooks for Test Lifecycle Management
+
+---------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+# Test Suites
+
+## Functional Test Suite
+Purpose: Validates individual application modules.
+Covered Modules:
+- Home
+- Demo Apps
+- Secure Bank Login
+- Dashboard
+- Transfer Money
+- Login Validation
+- Account Validation
+- Role Validation
+
+## Smoke Suite
+Purpose: Validate the critical application functionality after every deployment.
+Execution Tag: @smoke
+Flow:
+    QA Playground
+        ↓
+    Demo Apps
+        ↓
+    Secure Bank
+        ↓
+    Login
+        ↓
+    Dashboard
+        ↓
+    Transfer Money
+        ↓
+    Transfer Successful
+
+------------------------------------------------------------------------------------
+------------------------------------------------------------------------------------
+## Regression Suite
+Purpose: Validate the complete business flow for multiple user roles.
+Covered Users : Standard User & Admin User
+Execution Tag: @regression
+Uses
+- Scenario Outline
+- Examples Table
+- Data Driven Testing
+
+Flow:
+    Login
+     ↓
+    Dashboard
+     ↓
+    Transfer
+     ↓
+    Transfer Successful
+     ↓
+    Dashboard
+     ↓
+    Logout
+
+-------------------------------------------------------------------------------------
+-------------------------------------------------------------------------------------
+## End-to-End Suite
+Purpose: Validate the complete customer journey.
+Execution Tag: @e2e
+Flow:
+    QA Playground
+      ↓
+    Demo Apps
+      ↓
+    Secure Bank
+      ↓
+    Login
+      ↓
+    Dashboard
+      ↓
+    Transfer
+      ↓
+    Transfer Successful
+      ↓
+    Dashboard
+      ↓
+    Logout
+
+-----------------------------------------------------------------------------------
+-----------------------------------------------------------------------------------
+# JavaScript Concepts Demonstrated
+The framework demonstrates the following JavaScript concepts.
+
+### Variables
+- let
+- const
+
+### Functions
+- Arrow Functions
+- Reusable Functions
+- Class Methods
+
+### Operators
+- Assignment
+- Comparison
+- Logical Operators
+
+### Conditional Statements
+- if
+- else if
+- else
+- Nested if
+- switch
+- Ternary Operator
+
+### Loops
+- for
+- for...of
+- while
+- do...while
+
+### Arrays
+- Arrays
+- Array of Objects
+
+### Objects
+- JSON Fixtures
+- JavaScript Objects
+
+### Strings
+- trim()
+- Template Literals
+
+### Comments
+- Single Line Comments
+- Code Documentation
+
+## Cypress Concepts Demonstrated
+- Cypress Commands
+- Assertions
+- Locators
+- Variables
+- Aliases
+- Fixtures
+- Hooks
+- XPath Support
+- Environment Variables
+- Page Object Model
+
+### Cucumber Concepts Demonstrated
+- Feature Files
+- Scenarios
+- Scenario Outline
+- Examples Table
+- Background
+- Given
+- When
+- Then
+- Tags
+- Hooks
+
+#### Page Objects
+| Page | Responsibility |
+|--------|----------------|
+| HomePage | Home Navigation |
+| DemoAppsPage | Demo Applications |
+| LoginPage | Login & Logout |
+| DashboardPage | Dashboard Validations |
+| TransferPage | Transfer Money Business Flow |
+
+##### Fixtures
+## loginData.json
+Contains
+- Standard User
+- Locked User
+- Frozen User
+- Overdraft User
+- Slow User
+- Error User
+- Admin User
+
+## transferData.json
+Contains
+- From Account
+- To Account
+- Amount
+- Memo
+
+## Hooks
+Framework Hooks
+Before()
+After()
+@Before("@smoke")
+@Before("@regression")
+@Before("@e2e")
+
+Purpose
+- Suite Initialization
+- Cleanup
+- Logging
+
+
+# Exception Handling
+The framework ignores the known React rendering issue thrown by QA Playground.
+```javascript
+Cypress.on("uncaught:exception", (err) => {
+    if (err.message.includes("Minified React error #418")) {
+        return false;
+    }
+});
+```
+This exception belongs to the application and should not fail the automation execution.
+
+# Reporting
+Framework uses **Mochawesome Reporter**. The framework uses Mochawesome Reporter to generate HTML and JSON execution reports.
+
+Generated Report Location
+```
+mochawesome-report/
+```
+----------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------
+
+# Execution Commands
+## Install Dependencies
+```bash
+npm install
+```
+
+## Open Cypress
+```bash
+npm run cy:open
+```
+## Run All Tests
+```bash
+npm run all
+```
+
+## Run Smoke Suite
+```bash
+npm run smoke
+```
+## Run Regression Suite
+```bash
+npm run regression
+```
+
+## Run End-to-End Suite
+```bash
+npm run e2e
+```
+
+## Generate Mochawesome Report
+```bash
+npm run report
+```
+## Generate Test Report
+```bash
+npm run test:report
+```

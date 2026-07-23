@@ -21,20 +21,16 @@ class HomePage {
 
     // Navigation menu
     navigationMenu(menu) {
-        return this.navigationBar()
-            .contains("a", menu.name);
-    }
+    return this.navigationBar()
+        .contains("a", menu.name);
+}
 
     // Open navigation menu
     openNavigationMenu(menu) {
-        this.navigationBar()
-            .contains("a", menu.name)
-            .should("be.visible");
-        this.navigationBar()
-            .contains("a", menu.name)
-            .click();
+    this.navigationMenu(menu)
+        .should("be.visible")
+        .click();
 }
-
 }
 
 export default new HomePage();

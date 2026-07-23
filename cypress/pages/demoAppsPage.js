@@ -1,15 +1,19 @@
 class DemoAppsPage {
 
-    // Demo Apps page header
     pageHeader() {
         return cy.contains("QA Demo Apps");
     }
 
-    // Bank Demo App card
     bankDemoCard() {
         return cy.contains("a", "Bank Demo App");
     }
 
+    openBankDemoApp() {
+        this.bankDemoCard()
+            .should("be.visible")
+            .invoke("removeAttr", "target")
+            .click();
+    }
 }
 
 export default new DemoAppsPage();

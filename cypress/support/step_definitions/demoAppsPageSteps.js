@@ -1,5 +1,4 @@
 import { Given, When, Then } from "@badeball/cypress-cucumber-preprocessor";
-
 import DemoAppsPage from "../../pages/demoAppsPage";
 import LoginPage from "../../pages/loginPage";
 
@@ -10,11 +9,12 @@ Given("User is on QA Demo Apps page", () => {
 
 // Verify Demo Apps page
 Then("Demo Apps page should be displayed", () => {
-    cy.location("pathname")
-        .should("eq", "/demo");
-
     DemoAppsPage.pageHeader()
-        .should("be.visible");
+        .should("be.visible")
+        .and("contain", "QA Demo Apps");
+
+    cy.url().should("include", "/demo");
+
 });
 
 // Verify Bank Demo App

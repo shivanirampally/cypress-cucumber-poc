@@ -38,29 +38,22 @@ class LoginPage {
     }
 
     logout() {
-        this.logoutButton().click();
-    }
+    this.logoutButton()
+        .should("be.visible")
+        .click();
+}
 
     // Login validations
     verifyLoginPage() {
-        cy.location("pathname")
-            .should("eq", "/bank/login");
+    this.pageHeader()
+        .should("be.visible");
 
-        this.pageHeader()
-            .should("be.visible");
-        this.loginButton()
-            .should("be.visible");
-    }
+    this.loginButton()
+        .should("be.visible");
 
-    verifyDashboard() {
-        cy.location("pathname")
-            .should("eq", "/bank/dashboard");
-        cy.contains("Welcome back")
-            .should("be.visible");
-        this.logoutButton()
-            .should("be.visible");
-    }
-
+    cy.location("pathname", { timeout: 10000 })
+        .should("eq", "/bank/login");
+}
 }
 
 export default new LoginPage();

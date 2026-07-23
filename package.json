@@ -2,26 +2,30 @@
   "name": "cypress-poc-qaplayground",
   "version": "1.0.0",
   "description": "Cypress Cucumber POC for QA Playground",
-  "main": "index.js",
-"scripts": {
-  "cy:open": "cypress open",
-  "cy:run": "cypress run --headed --browser chrome",
-  "smoke": "cypress run --headed --browser chrome --env tags=@smoke",
-  "smokeTest": "cypress run --headed --browser chrome --spec 'cypress/e2e/features/smokeTest.feature'",  
-  "regression": "cypress run --headed --browser chrome --env tags=@regression",
-  "e2e": "cypress run --headed --browser chrome --env tags=@e2e",
-  "report": "marge mochawesome-report/*.json -f report -o mochawesome-report",
-  "test:report": "cypress run --headed --browser chrome && marge mochawesome-report/*.json -f report -o mochawesome-report"
-},
+  "author": "Shivani Rampally",
+  "license": "ISC",
+  "type": "commonjs",
+
+  "scripts": {
+    "cy:open": "cypress open",
+    "cy:run": "cypress run --browser chrome --headed",
+
+    "smoke": "cypress run --browser chrome --headed --spec \"cypress/e2e/smokeTest/**/*.feature\"",
+    "regression": "cypress run --browser chrome --headed --spec \"cypress/e2e/regressionTest/**/*.feature\"",
+    "e2e": "cypress run --browser chrome --headed --spec \"cypress/e2e/e2eFlow/**/*.feature\"",
+    "all": "cypress run --browser chrome --headed",
+
+    "report": "marge mochawesome-report/*.json -f report -o mochawesome-report",
+    "test:report": "npm run all && npm run report"
+  },
+
   "keywords": [
     "cypress",
     "cucumber",
     "automation",
     "qa-playground"
   ],
-  "author": "Shivani Rampally",
-  "license": "ISC",
-  "type": "commonjs",
+
   "devDependencies": {
     "@badeball/cypress-cucumber-preprocessor": "^24.0.1",
     "@bahmutov/cypress-esbuild-preprocessor": "^2.2.8",
