@@ -31,6 +31,15 @@ class UsersApi {
         );
     }
 
+    patchUser(userId, userData) {
+    return BaseApi.sendRequest(
+        "PATCH",
+        `/users/${userId}`,
+        userData
+    );
+
+    }
+
     deleteUser(userId) {
         return BaseApi.sendRequest(
             "DELETE",
