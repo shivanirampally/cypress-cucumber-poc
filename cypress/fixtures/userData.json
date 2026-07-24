@@ -1,4 +1,7 @@
 {
+    "validUserId": 2,
+    "invalidUserId": 23,
+
     "createUser": {
         "name": "Shivani",
         "job": "QA Engineer"
