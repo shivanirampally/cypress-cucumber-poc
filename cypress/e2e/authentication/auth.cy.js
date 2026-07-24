@@ -9,7 +9,12 @@ describe("Authentication API", () => {
         AuthApi.login(this.authData.validLogin)
             .then((response) => {
                 expect(response.status).to.eq(200);
-                expect(response.body).to.have.property("token");
+            expect(response.headers["content-type"])
+                .to.include("application/json");
+            expect(response.body)
+                .to.have.property("token");
+            expect(response.duration)
+                .to.be.lessThan(3000);
             });
         }
     );
