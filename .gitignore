@@ -9,3 +9,6 @@ cypress/screenshots/
 cypress/reports/*.html
 cypress/reports/*.json
 cypress/reports/*.xml
+
+#env files
+cypress.env.json
