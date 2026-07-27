@@ -1,4 +1,11 @@
+# Dependencies
 node_modules/
-mochawesome-report/
+
+# Cypress artifacts
 cypress/screenshots/
 cypress/videos/
+cypress/reports/
+mochawesome-report/
+
+# Environment
+cypress.env.json
