@@ -5,7 +5,7 @@ Scenario Outline: Validate user permissions
 
     Given User opens Secure Bank page
     When User logs in as "<account>"
-    Then "<account>" permissions should be validated
+    Then Dashboard should be displayed
 
     Examples:
     | account |

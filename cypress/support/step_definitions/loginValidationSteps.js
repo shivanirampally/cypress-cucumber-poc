@@ -8,11 +8,11 @@ Functions
 String methods**/
 
 import LoginPage from "../../pages/loginPage";
+import DashboardPage from "../../pages/dashboardPage";
 import { When, Then } from "@badeball/cypress-cucumber-preprocessor";
 
 // Enter login credentials
-When(
-    "User enters username {string} and password {string}",
+When("User enters username {string} and password {string}",
     (username, password) => {
         const enteredUsername = username.trim();
         const enteredPassword = password.trim();
@@ -27,12 +27,11 @@ When(
 );
 
 // Verify login result
-Then(
-    "Login result should be {string}",
+Then("Login result should be {string}",
     (result) => {
         const loginResult = result.toLowerCase();
         if (loginResult === "success") {
-            LoginPage.verifyDashboard();
+            DashboardPage.verifyDashboard();
             LoginPage.logout();
             return;
         }
